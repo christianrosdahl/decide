@@ -337,6 +337,36 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC12True(testCase)
+            % TESTLIC12True Checks that lic12 returns true when one set of
+            % two data points (x(i),y(i)) and (x(j),y(j)) separated by
+            % exactly g_pts data points are such that x(j) - x(i) < 0.
+            
+            % Points 2 and 4 are such that x(4) - x(2) < 0.
+            x = [0 2 4 -6]; % x-coordinates of data points
+            y = [1 2 1 8]; % y-coordinates of data points
+            g_pts = 1; % condition parameter
+            
+            actSolution = lic12(x,y,g_pts);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC12False(testCase)
+            % TESTLIC12False Checks that lic12 returns false when no set of
+            % two data points (x(i),y(i)) and (x(j),y(j)) separated by
+            % exactly g_pts data points are such that x(j) - x(i) < 0.
+            
+            % The x-coordinates are increasing for all points.
+            x = [0 2 4 6]; % x-coordinates of data points
+            y = [1 2 1 8]; % y-coordinates of data points
+            g_pts = 1; % condition parameter
+            
+            actSolution = lic12(x,y,g_pts);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
