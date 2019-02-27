@@ -447,6 +447,47 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC15True(testCase)
+            % TESTLIC15True Checks that lic15 returns true if there are
+            % three data points separated by e_pts and f_pts consecutive
+            % intervening points that are the vertices of a triangle with
+            % area greater than area1 and if there exist three data points
+            % separated by e_pts and f_pts consecutive intervening points 
+            % that are the vertices of a triangle with area less than
+            % area2.
+            
+            % Points 1, 3 and 5 yield a triangle with area 6.
+            x = [0 5 2 3 2]; % x-coordinates of data points
+            y = [0 6 0 2 6]; % y-coordinates of data points
+            e_pts = 1; % condition parameter
+            f_pts = 1; % condition parameter
+            area1 = 5; % condition parameter
+            area2 = 7; % condition parameter
+            
+            actSolution = lic15(x,y,e_pts,f_pts,area1,area2);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC15False(testCase)
+            % TESTLIC15False Checks that lic15 returns false if there are
+            % no three data points separated by e_pts and f_pts consecutive
+            % intervening points that are the vertices of a triangle with
+            % area greater than area1.
+            
+            % Points 1, 3 and 5 yield a triangle with area 6.
+            x = [0 5 2 3 2]; % x-coordinates of data points
+            y = [0 6 0 2 6]; % y-coordinates of data points
+            e_pts = 1; % condition parameter
+            f_pts = 1; % condition parameter
+            area1 = 8; % condition parameter
+            area2 = 10; % condition parameter
+            
+            actSolution = lic15(x,y,e_pts,f_pts,area1,area2);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
