@@ -195,6 +195,39 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC8True(testCase)
+            % TESTLIC8True Checks that lic8 returns true when two data 
+            % points separated by exactly k_pts consecutive intervening
+            % points are a distance greater than length1 apart.
+            
+            % Points 2 and 4 are a distance 6 apart.
+            x = [0 4 2 10 5]; % x-coordinates of data points
+            y = [2 6 14 6 1]; % y-coordinates of data points
+            k_pts = 1; % condition parameter
+            dist = 5; % condition parameter
+            
+            actSolution = lic8(x,y,k_pts,dist);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC8False(testCase)
+            % TESTLIC8False Checks that lic8 returns false when no two data 
+            % points separated by exactly k_pts consecutive intervening
+            % points are a distance greater than length1 apart.
+            
+            % Points 1 and 3 are a distance 4 apart and points 2 and 4 are
+            % a distance 4 apart.
+            x = [0 2 4 6]; % x-coordinates of data points
+            y = [2 5 2 5]; % y-coordinates of data points
+            k_pts = 1; % condition parameter
+            dist = 5; % condition parameter
+            
+            actSolution = lic8(x,y,k_pts,dist);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
