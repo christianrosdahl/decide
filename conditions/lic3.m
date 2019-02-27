@@ -13,5 +13,21 @@ function fulfilled = lic3(x, y, epsilon)
 %   * y = y-coordinates of data points
 %   * epsilon = condition parameter (0 <= epsilon < pi)
 
+if epsilon < 0 || epsilon >= pi
+    error('epsilon must satisfy 0 <= epsilon < pi')
+end
+
 fulfilled = 0;
+
+for i = 1:length(x)-2 % Iterate through data points
+    p1 = [x(i) y(i)];
+    p2 = [x(i+1) y(i+1)];
+    p3 = [x(i+2) y(i+2)];
+    
+    angle = acos(dot(p3 - p2, p2 - p1)/(norm(p3 - p2)*norm(p2 - p1)));
+    
+    if angle < pi - epsilon || angle > pi + epsilon
+        fulfilled = 1;
+    end
+end
 end
