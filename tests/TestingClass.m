@@ -301,6 +301,42 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC11True(testCase)
+            % TESTLIC11True Checks that lic11 returns true when one set of
+            % three data points separated by exactly e_pts and f_pts
+            % consecutive intervening points are the vertices of a triangle
+            % with area greater than area1.
+            
+            % Points 1, 3 and 5 form a triangle with area 8.
+            x = [0 2 4 6 8]; % x-coordinates of data points
+            y = [1 5 1 5 1]; % y-coordinates of data points
+            e_pts = 1; % condition parameter
+            f_pts = 1; % condition parameter
+            area1 = 7; % condition parameter
+            
+            actSolution = lic11(x,y,e_pts,f_pts,area1);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC11False(testCase)
+            % TESTLIC11False Checks that lic11 returns false when no set of
+            % three data points separated by exactly e_pts and f_pts
+            % consecutive intervening points are the vertices of a triangle
+            % with area greater than area1.
+            
+            % Points 1, 3 and 5 form a triangle with area 8.
+            x = [0 2 4 6 8]; % x-coordinates of data points
+            y = [1 5 1 5 1]; % y-coordinates of data points
+            e_pts = 1; % condition parameter
+            f_pts = 1; % condition parameter
+            area1 = 9; % condition parameter
+            
+            actSolution = lic11(x,y,e_pts,f_pts,area1);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
