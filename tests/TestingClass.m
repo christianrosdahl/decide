@@ -101,8 +101,8 @@ classdef TestingClass < matlab.unittest.TestCase
             % TESTLIC4False Checks that lic4 returns false when no three
             % consecutive points form a triangle with area greater than
             % area1.
-            x = [3 5 5 9 3]; % x-coordinates of data points
-            y = [2 5 9 5 3]; % y-coordinates of data points
+            x = [3 5 5 9]; % x-coordinates of data points
+            y = [2 5 9 5]; % y-coordinates of data points
             area1 = 10; % condition parameter
             
             actSolution = lic4(x,y,area1);
