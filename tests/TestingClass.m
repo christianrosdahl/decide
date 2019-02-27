@@ -265,6 +265,42 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC10True(testCase)
+            % TESTLIC10True Checks that lic10 returns true when one set of
+            % three data points separated by exactly c_pts and d_pts
+            % consecutive intervening points form an angle such that angle
+            % < pi - epsilon or angle > pi + epsilon.
+            
+            % Points 1, 3 and 5 form an angle 0 (i.e., < pi - epsilon)
+            x = [0 2 4 6 8]; % x-coordinates of data points
+            y = [1 5 1 5 1]; % y-coordinates of data points
+            c_pts = 1; % condition parameter
+            d_pts = 1; % condition parameter
+            epsilon = pi/2; % condition parameter
+            
+            actSolution = lic10(x,y,c_pts,d_pts,epsilon);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC10False(testCase)
+            % TESTLIC10False Checks that lic10 returns true when no set of
+            % three data points separated by exactly c_pts and d_pts
+            % consecutive intervening points form an angle such that angle
+            % < pi - epsilon or angle > pi + epsilon.
+            
+            % Points 1, 3 and 5 form an right angle.
+            x = [0 2 4 6 4]; % x-coordinates of data points
+            y = [1 5 1 5 2]; % y-coordinates of data points
+            c_pts = 1; % condition parameter
+            d_pts = 1; % condition parameter
+            epsilon = pi/4; % condition parameter
+            
+            actSolution = lic10(x,y,c_pts,d_pts,epsilon);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
