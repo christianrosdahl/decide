@@ -12,6 +12,13 @@ function fulfilled = lic5(x, y, q_pts, quads)
 %   * q_pts = condition parameter (2 <= q_pts <= numpoints)
 %   * quads = condition parameter (1 <= quads <= 3)
 
+if q_pts < 2 || q_pts > length(x)
+    error('q_pts must satisfy 2 <= q_pts <= numpoints')
+end
+if quads < 1 || quads > 3
+    error('quads must satisfy 1 <= quads <= 3')
+end
+
 fulfilled = 0;
 
 for i = 1:length(x)-q_pts+1 % Iterate through data points
