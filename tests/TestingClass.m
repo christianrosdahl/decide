@@ -57,6 +57,32 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC3True(testCase)
+            % TESTLIC3True Checks that lic3 returns true when three
+            % consecutive points form an angle such that angle < pi -
+            % epsilon or angle > pi + epsilon.
+            x = [3 4 5 7]; % x-coordinates of data points
+            y = [-5 -6 -7 -9]; % y-coordinates of data points
+            epsilon = pi/2; % condition parameter
+            
+            actSolution = lic3(x,y,epsilon);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC3False(testCase)
+            % TESTLIC3False Checks that lic3 returns false when no three
+            % consecutive points form an angle such that angle < pi -
+            % epsilon or angle > pi + epsilon.
+            x = [0 1 1 0]; % x-coordinates of data points
+            y = [0 0 1 1]; % y-coordinates of data points
+            epsilon = pi/4; % condition parameter
+            
+            actSolution = lic3(x,y,epsilon);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
