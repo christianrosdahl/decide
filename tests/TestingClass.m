@@ -137,6 +137,30 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC6True(testCase)
+            % TESTLIC6True Checks that lic6 returns true when two
+            % consecutive data points (x(i),y(i)) and (x(i+1),y(i+1)) are
+            % such that x(i+1) - x(i) < 0.
+            x = [6 2 5 7 9]; % x-coordinates of data points
+            y = [1 6 3 4 2]; % y-coordinates of data points
+            
+            actSolution = lic6(x,y);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC6False(testCase)
+            % TESTLIC6False Checks that lic6 returns false when no two
+            % consecutive data points (x(i),y(i)) and (x(i+1),y(i+1)) are
+            % such that x(i+1) - x(i) < 0.
+            x = [6 8 9 11 12]; % x-coordinates of data points
+            y = [1 6 3 4 2]; % y-coordinates of data points
+            
+            actSolution = lic6(x,y);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
