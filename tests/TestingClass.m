@@ -31,6 +31,32 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC2True(testCase)
+            % TESTLIC2True Checks that lic2 returns true when there are
+            % three consecutive data points that cannot all be contained
+            % within or on a circle of radius radius1.
+            x = [0 1 5 6]; % x-coordinates of data points
+            y = [0 0 1 1]; % y-coordinates of data points
+            radius1 = 2; % condition parameter
+            
+            actSolution = lic2(x,y,radius1);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC2False(testCase)
+            % TESTLIC2False Checks that lic2 returns false when there are
+            % not three consecutive data points that cannot all be 
+            % contained within or on a circle of radius radius1.
+            x = [0 1 5 6]; % x-coordinates of data points
+            y = [0 0 1 1]; % y-coordinates of data points
+            radius1 = 10; % condition parameter
+            
+            actSolution = lic2(x,y,radius1);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
