@@ -9,4 +9,10 @@ function fulfilled = lic6(x, y)
 %   * y = y-coordinates of data points
 
 fulfilled = 0;
+
+for i = 1:length(x)-1 % Iterate through data points
+    if x(i+1) - x(i) < 0
+        fulfilled = 1;
+    end
+end
 end
