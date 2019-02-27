@@ -228,6 +228,43 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC9True(testCase)
+            % TESTLIC9True Checks that lic9 returns true when one set of
+            % three data points separated by exactly a_pts and b_pts
+            % consecutive intervening points cannot be contained wihtin or
+            % on a circle of radius radius1.
+            
+            % Points 1, 3 and 5 cannot be contained in a circle of radius
+            % less than 4.
+            x = [0 2 4 6 8]; % x-coordinates of data points
+            y = [1 5 1 5 1]; % y-coordinates of data points
+            a_pts = 1; % condition parameter
+            b_pts = 1; % condition parameter
+            radius1 = 5; % condition parameter
+            
+            actSolution = lic9(x,y,a_pts,b_pts,radius1);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC9False(testCase)
+            % TESTLIC9False Checks that lic9 returns false when every set of
+            % three data points separated by exactly a_pts and b_pts
+            % consecutive intervening points can be contained wihtin or
+            % on a circle of radius radius1.
+            
+            % Points 1, 3 and 5 can be contained in a circle of radius 4.
+            x = [0 2 4 6 8]; % x-coordinates of data points
+            y = [1 5 1 5 1]; % y-coordinates of data points
+            a_pts = 1; % condition parameter
+            b_pts = 1; % condition parameter
+            radius1 = 3; % condition parameter
+            
+            actSolution = lic9(x,y,a_pts,b_pts,radius1);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
