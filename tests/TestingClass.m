@@ -83,6 +83,32 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC4True(testCase)
+            % TESTLIC4True Checks that lic4 returns true when three
+            % consecutive points form a triangle with area (8) greater than
+            % area1.
+            x = [3 5 5 9 3]; % x-coordinates of data points
+            y = [2 5 9 5 3]; % y-coordinates of data points
+            area1 = 7; % condition parameter
+            
+            actSolution = lic4(x,y,area1);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC4False(testCase)
+            % TESTLIC4False Checks that lic4 returns false when no three
+            % consecutive points form a triangle with area greater than
+            % area1.
+            x = [3 5 5 9 3]; % x-coordinates of data points
+            y = [2 5 9 5 3]; % y-coordinates of data points
+            area1 = 10; % condition parameter
+            
+            actSolution = lic4(x,y,area1);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
