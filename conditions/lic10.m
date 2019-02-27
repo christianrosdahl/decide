@@ -1,6 +1,6 @@
-function fulfilled = lic10(x, y, b_pts, c_pts, epsilon)
+function fulfilled = lic10(x, y, c_pts, d_pts, epsilon)
 % LIC10 Checks if there exists at least one set of three data points 
-% separated by exactly b_pts and c_pts consecutive intervening points, 
+% separated by exactly c_pts and d_pts consecutive intervening points, 
 % respectively, that form an angle such that:
 % angle < (pi - epsilon) or angle > (pi - epsilon).
 % If the first or last point (or both) coincides with the second point
