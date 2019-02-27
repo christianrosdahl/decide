@@ -109,6 +109,34 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC5True(testCase)
+            % TESTLIC5True Checks that lic5 returns true when at least
+            % q_pts consecutive data points lie in more than quads
+            % quadrants.
+            x = [1 1 -1 -1]; % x-coordinates of data points
+            y = [1 1 1 -1]; % y-coordinates of data points
+            q_pts = 3; % condition parameter
+            quads = 2; % condition parameter
+            
+            actSolution = lic5(x,y,q_pts,quads);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC5False(testCase)
+            % TESTLIC5False Checks that lic5 returns false when no
+            % q_pts consecutive data points lie in more than quads
+            % quadrants.
+            x = [1 1 -1 -3]; % x-coordinates of data points
+            y = [1 1 1 2]; % y-coordinates of data points
+            q_pts = 3; % condition parameter
+            quads = 2; % condition parameter
+            
+            actSolution = lic5(x,y,q_pts,quads);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
