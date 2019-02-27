@@ -380,7 +380,7 @@ classdef TestingClass < matlab.unittest.TestCase
             x = [2 1 2 8 2]; % x-coordinates of data points
             y = [0 5 3 0 2]; % y-coordinates of data points
             k_pts = 1; % condition parameter
-            length1 = 2; % condition parameter¨
+            length1 = 2; % condition parameter
             length2 = 2; % condition parameter
             
             actSolution = lic13(x,y,k_pts,length1,length2);
@@ -402,6 +402,48 @@ classdef TestingClass < matlab.unittest.TestCase
             length2 = 2; % condition parameter
             
             actSolution = lic13(x,y,k_pts,length1,length2);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC14True(testCase)
+            % TESTLIC14True Checks that lic14 returns true if there are
+            % three data points separated by a_pts and b_pts consecutive
+            % intervening points that cannot be contained within or on a
+            % cirle of radius1, and if there is a set of three data points
+            % separated by a_pts and b_pts consecutive intervening points
+            % that can be contained in or on a cirlce of radius radius2.
+            
+            % Points 1, 3 and 5 can be contained in a circle of radius 2,
+            % but not in a smaller circle.
+            x = [0 1 0 3 0]; % x-coordinates of data points
+            y = [0 2 2 1 4]; % y-coordinates of data points
+            a_pts = 1; % condition parameter
+            b_pts = 1; % condition parameter
+            radius1 = 1; % condition parameter
+            radius2 = 2; % condition parameter
+            
+            actSolution = lic14(x,y,a_pts,b_pts,radius1,radius2);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC14False(testCase)
+            % TESTLIC14False Checks that lic14 returns false if there are
+            % no three data points separated by a_pts and b_pts consecutive
+            % intervening points that cannot be contained within or on a
+            % cirle of radius1.
+            
+            % Points 1, 3 and 5 can be contained in a circle of radius 2,
+            % but not in a smaller circle.
+            x = [0 1 0 3 0]; % x-coordinates of data points
+            y = [0 2 2 1 4]; % y-coordinates of data points
+            a_pts = 1; % condition parameter
+            b_pts = 1; % condition parameter
+            radius1 = 10; % condition parameter
+            radius2 = 2; % condition parameter
+            
+            actSolution = lic14(x,y,a_pts,b_pts,radius1,radius2);
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
