@@ -161,6 +161,40 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC7True(testCase)
+            % TESTLIC7True Checks that lic7 returns true when one of n_pts
+            % consecutive data points lies a distance greater than dist
+            % from the line joining the first and last of the n_pts points.
+            
+            % Points 1 and 4 form a line which point 3 is distance 12 away
+            % from.
+            x = [0 4 2 10 5]; % x-coordinates of data points
+            y = [2 6 14 2 1]; % y-coordinates of data points
+            n_pts = 4; % condition parameter
+            dist = 10; % condition parameter
+            
+            actSolution = lic7(x,y,n_pts,dist);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC7False(testCase)
+            % TESTLIC7False Checks that lic7 returns false when none of n_pts
+            % consecutive data points lies a distance greater than dist
+            % from the line joining the first and last of the n_pts points.
+            
+            % Point 2 is length 2 from the line of points 1 and 3, and point
+            % 3 is length 2 from the line of points 2 and 4.
+            x = [0 1 2 3]; % x-coordinates of data points
+            y = [0 2 0 2]; % y-coordinates of data points
+            n_pts = 3; % condition parameter
+            dist = 3; % condition parameter
+            
+            actSolution = lic7(x,y,n_pts,dist);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
