@@ -1,7 +1,7 @@
 function fulfilled = lic12(x, y, g_pts)
 % LIC12 Checks if there exists at least one set of two data points, 
-% (x(i), y(i)) and (x(i+1), y(i+1)), separated by exactly g_pts consecutive
-% intervening points, such that x(i+1) - x(i) < 0.
+% (x(i), y(i)) and (x(j), y(j)), separated by exactly g_pts consecutive
+% intervening points, such that x(j) - x(i) < 0, where j > i.
 % The condition is not met when numpoints < 3.
 
 % OUTPUTS:
