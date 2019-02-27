@@ -77,7 +77,7 @@ classdef TestingClass < matlab.unittest.TestCase
             % epsilon or angle > pi + epsilon.
             x = [0 1 1 0]; % x-coordinates of data points
             y = [0 0 1 1]; % y-coordinates of data points
-            epsilon = pi/4; % condition parameter
+            epsilon = 3*pi/4; % condition parameter
             
             actSolution = lic3(x,y,epsilon);
             expSolution = 0;
