@@ -367,6 +367,44 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 0;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testLIC13True(testCase)
+            % TESTLIC13True Checks that lic13 returns true if there are two
+            % data points separated by exactly k_pts consecutive
+            % intervening points further than lenght1 apart as well as two
+            % data points separated by exactly k_pts consecutive
+            % intervening points shorter than length2 apart.
+            
+            % Points 1 and 3 are a distance 3 apart and points 3 and 5 are
+            % a distance 1 apart.
+            x = [2 1 2 8 2]; % x-coordinates of data points
+            y = [0 5 3 0 2]; % y-coordinates of data points
+            k_pts = 1; % condition parameter
+            length1 = 2; % condition parameter¨
+            length2 = 2; % condition parameter
+            
+            actSolution = lic13(x,y,k_pts,length1,length2);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
+        
+        function testLIC13False(testCase)
+            % TESTLIC13False Checks that lic13 returns false if there are 
+            % no two data points separated by exactly k_pts consecutive
+            % intervening points further than lenght1 apart.
+            
+            % Points 1 and 3 are a distance 3 apart and points 2 and 4 are
+            % a distance 1 apart.
+            x = [2 0 2 0]; % x-coordinates of data points
+            y = [0 1 3 0]; % y-coordinates of data points
+            k_pts = 1; % condition parameter
+            length1 = 4; % condition parameter
+            length2 = 2; % condition parameter
+            
+            actSolution = lic13(x,y,k_pts,length1,length2);
+            expSolution = 0;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
