@@ -23,10 +23,10 @@ if epsilon < 0 || epsilon >= pi
     error('epsilon must satisfy 0 <= epsilon < pi')
 end
 if c_pts < 0
-    error('a_pts must satisfy c_pts >= 0')
+    error('c_pts must satisfy c_pts >= 0')
 end
 if d_pts < 0
-    error('b_pts must satisfy d_pts >= 0')
+    error('d_pts must satisfy d_pts >= 0')
 end
 if c_pts + d_pts > length(x) - 3
     error('c_pts and d_pts must satisfy c_pts + d_pts <= numpoints - 3')
