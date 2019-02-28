@@ -74,5 +74,16 @@ for i = 1:15
         end
     end
 end
+
+% Compute Final Unlocking Vector (fuv): 
+fuv = zeros(15,1);
+for i = 1:15
+    if puv(i) == 0 % The LIC should not be considered.
+        fuv(i) = 1;
+    end
+    if sum(pum(i,:)) == 15 % All entries of row i in pum are true.
+        fuv(i) = 1;
+    end
+end
 end
 
