@@ -85,5 +85,12 @@ for i = 1:15
         fuv(i) = 1;
     end
 end
+
+% Final launch/no launch decision:
+if sum(fuv) == 15 % If all entries in fuv are true
+    launch = 'YES';
+else
+    launch = 'NO';
+end
 end
 
