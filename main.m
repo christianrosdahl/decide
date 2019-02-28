@@ -54,10 +54,9 @@ lcm(4,1) = 2; lcm(4,2) = 1; lcm(4,3) = 2; lcm(4,4) = 2;
 % considered as a factor in signaling interceptor launch.
 puv = zeros(15,1);
 puv(1) = 1;
-puv(2) = 1;
 
 % Data points (on format [x1 y1; x2 y2; ...])
-points = [0 0; 1 1; 2 2; 3 3; 4 4];
+points = [0 0; 3 0; 25 0; 25 20; 0 0];
 
 % Run the decide function
 [launch, cmv, pum, fuv] = decide(points, parameters, lcm, puv)
