@@ -1,4 +1,4 @@
-# Launch Interceptor Program
+# Condition Checking Function for Interceptor Launch Program
 
 This project consists of an implementation of a function `decide` which is part of a hypothetical anti-ballistic missile system. The function analyses radar tracking information, consisting of a collection of planar point coordinates, and returns a boolean signal which determines whether an interceptor should be launched based on this information.
 
