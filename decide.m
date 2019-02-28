@@ -40,7 +40,7 @@ y = points(:,2); % y-coordinates of data points
 
 % Compute Conditions Met Vector (cmv):
 addpath('conditions')
-cmv = zeros(1,15);
+cmv = zeros(15,1);
 cmv(1) = lic1(x, y, length1);
 cmv(2) = lic2(x, y, radius1);
 cmv(3) = lic3(x, y, epsilon);
