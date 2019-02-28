@@ -5,4 +5,4 @@ addpath('tests')
 addpath('conditions')
 
 testObject = TestingClass;
-testResults = run(testObject)
+testResults = run(testObject);

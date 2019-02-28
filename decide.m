@@ -35,26 +35,5 @@ length2 = parameters{17}; % Max. length in LIC 13
 radius2 = parameters{18}; % Max. radius in LIC 14
 area2 = parameters{19}; % Maximum area in LIC 15
 
-x = points(:,1); % x-coordinates of data points
-y = points(:,2); % y-coordinates of data points
-
-% Compute Conditions Met Vector (cmv):
-addpath('conditions')
-cmv = zeros(1,15);
-cmv(1) = lic1(x, y, length1);
-cmv(2) = lic2(x, y, radius1);
-cmv(3) = lic3(x, y, epsilon);
-cmv(4) = lic4(x, y, area1);
-cmv(5) = lic5(x, y, q_pts, quads);
-cmv(6) = lic6(x, y);
-cmv(7) = lic7(x, y, n_pts, dist);
-cmv(8) = lic8(x, y, k_pts, length1);
-cmv(9) = lic9(x, y, a_pts, b_pts, radius1);
-cmv(10) = lic10(x, y, c_pts, d_pts, epsilon);
-cmv(11) = lic11(x, y, e_pts, f_pts, area1);
-cmv(12) = lic12(x, y, g_pts);
-cmv(13) = lic13(x, y, k_pts, length1, length2);
-cmv(14) = lic14(x, y, a_pts, b_pts, radius1, radius2);
-cmv(15) = lic15(x, y, e_pts, f_pts, area1, area2);
 end
 
