@@ -47,4 +47,9 @@ for i = 1:length(x)-2-c_pts-d_pts % Iterate through data points
         end
     end
 end
+
+% Not fulfilled when numpoints < 5.
+if length(x) < 5
+    fulfilled = 0;
+end
 end
