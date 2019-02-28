@@ -56,5 +56,23 @@ cmv(12) = lic12(x, y, g_pts);
 cmv(13) = lic13(x, y, k_pts, length1, length2);
 cmv(14) = lic14(x, y, a_pts, b_pts, radius1, radius2);
 cmv(15) = lic15(x, y, e_pts, f_pts, area1, area2);
+
+% Compute Preliminary Unlocking Matrix (pum):
+pum = zeros(15,15);
+for i = 1:15
+    for j = 1:15
+        if strcmp('lcm','andd')
+            if cmv(i) == 1 && cmv(j) == 1
+                pum(i,j) = 1;
+            end
+        elseif strcmp('lcm','orr')
+            if cmv(i) == 1 || cmv(j) == 1
+                pum(i,j) = 1;
+            end
+        else % The logical connector is 'notused'
+            pum(i,j) = 1;
+        end
+    end
+end
 end
 
