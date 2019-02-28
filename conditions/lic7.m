@@ -56,4 +56,7 @@ if largestDist > dist
     fulfilled = 1;
 end
 
+if length(x) < 3
+    fulfilled = 0;
+end
 end
