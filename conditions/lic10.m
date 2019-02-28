@@ -19,5 +19,32 @@ function fulfilled = lic10(x, y, c_pts, d_pts, epsilon)
 %       (d_pts >= 1, c_pts + d_pts <= numpoints - 3)
 %   * epsilon = condition parameter (0 <= epsilon < pi)
 
+if epsilon < 0 || epsilon >= pi
+    error('epsilon must satisfy 0 <= epsilon < pi')
+end
+if c_pts < 0
+    error('a_pts must satisfy c_pts >= 0')
+end
+if d_pts < 0
+    error('b_pts must satisfy d_pts >= 0')
+end
+if c_pts + d_pts > length(x) - 3
+    error('c_pts and d_pts must satisfy c_pts + d_pts <= numpoints - 3')
+end
+
 fulfilled = 0;
+
+for i = 1:length(x)-2-c_pts-d_pts % Iterate through data points
+    p1 = [x(i) y(i)];
+    p2 = [x(i+c_pts+1) y(i+c_pts+1)];
+    p3 = [x(i+c_pts+d_pts+2) y(i+c_pts+d_pts+2)];
+    
+    if (~norm(p2-p1)==0 && ~norm(p3-p2)==0)
+        angle = acos(dot(p3 - p2, p2 - p1)/(norm(p3 - p2)*norm(p2 - p1)));
+        
+        if angle < pi - epsilon || angle > pi + epsilon
+            fulfilled = 1;
+        end
+    end
+end
 end
