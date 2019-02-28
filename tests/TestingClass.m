@@ -241,7 +241,7 @@ classdef TestingClass < matlab.unittest.TestCase
             y = [1 5 1 5 1]; % y-coordinates of data points
             a_pts = 1; % condition parameter
             b_pts = 1; % condition parameter
-            radius1 = 5; % condition parameter
+            radius1 = 3; % condition parameter
             
             actSolution = lic9(x,y,a_pts,b_pts,radius1);
             expSolution = 1;
@@ -259,7 +259,7 @@ classdef TestingClass < matlab.unittest.TestCase
             y = [1 5 1 5 1]; % y-coordinates of data points
             a_pts = 1; % condition parameter
             b_pts = 1; % condition parameter
-            radius1 = 3; % condition parameter
+            radius1 = 5; % condition parameter
             
             actSolution = lic9(x,y,a_pts,b_pts,radius1);
             expSolution = 0;
