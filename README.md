@@ -35,3 +35,6 @@ The *Final Unlocking Vector* `fuv` (length 15) is constructed according to:
 * `fuv(i) = 0` otherwise.
 
 Finally, the decision `launch` is set to `YES` if all entries of `fuv` are true (`1`) and to `NO` otherwise.
+
+## How to use it?
+The main program `main.m` defines example inputs to the `decide` function, invokes the function and prints the outputs (of which the first one is the decision `launch = 'YES'` or `launch = 'NO'`). The meanings of the parameters as well as the general evaluation criteria for the LICs are described in the comments of each function `lic1.m`, ..., `lic15.m` which are located in the folder `conditions`. The program `main.m` can be run as it is to illustrate the functioning of the `decide` function. The user can then try to modify the paramters in `parameters`, the entries of the Logical Connector Matrix `lcm` (where each entry should be an integer according to `0 = notused`, `1 = or` and `2 = and`), the Preliminary Unlocking Vector `puv` (where each entry is `0` or `1` corresponding to `false` or `true`) as well as the data point matrix `points = [x1 y1; x2 y2; ...]`.
