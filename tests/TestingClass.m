@@ -309,8 +309,8 @@ classdef TestingClass < matlab.unittest.TestCase
             % with area greater than area1.
             
             % Points 1, 3 and 5 form a triangle with area 8.
-            x = [0 2 4 6 8]; % x-coordinates of data points
-            y = [1 5 1 5 1]; % y-coordinates of data points
+            x = [0 2 4 6 4]; % x-coordinates of data points
+            y = [1 5 1 5 5]; % y-coordinates of data points
             e_pts = 1; % condition parameter
             f_pts = 1; % condition parameter
             area1 = 7; % condition parameter
@@ -327,8 +327,8 @@ classdef TestingClass < matlab.unittest.TestCase
             % with area greater than area1.
             
             % Points 1, 3 and 5 form a triangle with area 8.
-            x = [0 2 4 6 8]; % x-coordinates of data points
-            y = [1 5 1 5 1]; % y-coordinates of data points
+            x = [0 2 4 6 4]; % x-coordinates of data points
+            y = [1 5 1 5 5]; % y-coordinates of data points
             e_pts = 1; % condition parameter
             f_pts = 1; % condition parameter
             area1 = 9; % condition parameter
