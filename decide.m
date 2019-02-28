@@ -11,7 +11,7 @@ function [launch, cmv, pum, fuv] = decide(points, parameters, lcm, puv)
 %   * points = matrix containing the coordinates of data points (xi,yi)
 %       on the format [x1 y1; x2 y2; ...]
 %   * parameters = struct containing parameters for LICs (see below)
-%   * lmc = logical connector matrix
+%   * lmc = logical connector matrix: 0 = notused, 1 = or, 2 = and
 %   * puv = preliminary unlocking vector
 
 % Parameters:
@@ -59,13 +59,14 @@ cmv(15) = lic15(x, y, e_pts, f_pts, area1, area2);
 
 % Compute Preliminary Unlocking Matrix (pum):
 pum = zeros(15,15);
+% In lcm: 0 = not used, 1 = or, 2 = and
 for i = 1:15
     for j = 1:15
-        if strcmp('lcm','andd')
+        if lcm(i,j) == 2 % The logical connector is 'and'
             if cmv(i) == 1 && cmv(j) == 1
                 pum(i,j) = 1;
             end
-        elseif strcmp('lcm','orr')
+        elseif lcm(i,j) == 1 % The logical connector is 'or'
             if cmv(i) == 1 || cmv(j) == 1
                 pum(i,j) = 1;
             end
