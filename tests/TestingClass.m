@@ -295,7 +295,7 @@ classdef TestingClass < matlab.unittest.TestCase
             y = [1 5 1 5 2]; % y-coordinates of data points
             c_pts = 1; % condition parameter
             d_pts = 1; % condition parameter
-            epsilon = pi/4; % condition parameter
+            epsilon = 3*pi/4; % condition parameter
             
             actSolution = lic10(x,y,c_pts,d_pts,epsilon);
             expSolution = 0;
