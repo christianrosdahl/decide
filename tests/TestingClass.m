@@ -579,6 +579,20 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 1;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testTriangleArea(testCase)
+            % TESTTRIANGLEAREA Checks that the area of the triangle with
+            % vertices p1, p2 and p3 is correctly computed.
+            
+            % Points p1, p2 and p3 form a triangle with area 2.
+            p1 = [1 0]; % coordinates of first data point
+            p2 = [-1 -1]; % coordinates of second data point
+            p3 = [-1 1]; % coordinates of third data point
+            
+            actSolution = triangleArea(p1, p2, p3);
+            expSolution = 2;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
