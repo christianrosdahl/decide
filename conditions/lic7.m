@@ -26,27 +26,30 @@ end
 
 largestDist = 0;
 for i = 1:length(x)-n_pts+1 % Iterate through data points
-    x1 = x(i);
-    y1 = y(i);
-    x2 = x(i+n_pts-1);
-    y2 = y(i+n_pts-1);
+    p1 = [x(i) y(i) 0]; % First point on line (described in 3D).
+    p2 = [x(i+n_pts-1) y(i+n_pts-1) 0]; % Second point on line (in 3D).
+    lineVec = (p2 - p1); % Vector defining the line.
     
-    if norm([x1 y1] - [x2 y2]) > 0
-        m = y1 - x1*(y2-y1)/(x2-x1); % Intersection of line with y-axis.
-        lineVector = [x2 y2] - [x1 y1];
-        lineVector = lineVector/norm(lineVector); % Normalised line vector.
-        
+    if norm(lineVec) > 0
+        lineVec = lineVec/norm(lineVec); % Normalise line vector.
         for j = i+1:i+n_pts-2
-            vec = [x(j) y(j)-m]; % Point vector displaced to line.
-            projection = dot(vec,lineVector)*lineVector; % Proj. of vec on line.
-            distVector = vec - projection;
-            dist = norm(distVector); % Distance between line and point.
+            point = [x(j) y(j) 0]; % Point vector (in 3D).
+            v = point - p1;
+            
+            % The cross product between v and lineVec gives a vector whose
+            % length is equal to the area of the parallelogram defined by 
+            % these vectors. This area is also the base of 
+            % the parallelogram -- given by the unit vector v --
+            % times the height, which is the sought distance to the point.
+            % Thus, the cross product yields the distance from the line to
+            % the point when v is a unit vector.
+            dist = norm(cross(v,lineVec)); % Distance between line and point.
             largestDist = max(largestDist, dist);
         end
-    else % If first and last point coincide
+    else % If p1 and p2 coincide
         for j = i+1:i+n_pts-2
-            vec = [x(j) y(j)];
-            dist = norm([x1 y1] - vec);
+            point = [x(j) y(j)];
+            dist = norm(p1(1:2) - point);
             largestDist = max(largestDist, dist);
         end
     end
