@@ -593,6 +593,21 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 2;
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testPointLineDist(testCase)
+            % TESTPOINTLINEDIST Checks that the correct distance from the
+            % point p to the line containing points p1 and p2 is returned.
+            
+            % The line y = 3 contains points p1 and p2 and the distance to
+            % p from this line is 2.
+            p1 = [0 3]; % coordinates of first point on line
+            p2 = [10 3]; % coordinates of second point on line
+            p = [2 5]; % coordinates of point
+            
+            actSolution = pointLineDist(p, p1, p2);
+            expSolution = 2;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
