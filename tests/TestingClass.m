@@ -565,6 +565,20 @@ classdef TestingClass < matlab.unittest.TestCase
             expSolution = 'YES';
             testCase.verifyEqual(actSolution, expSolution)
         end
+        
+        function testSmallestCircleRadius(testCase)
+            % TESTSMALLESTCIRCLERADIUS Checks that the radius of the
+            % smallest circle containing three given points is returned.
+            
+            % Points p1, p2 and p3 are on the unit circle.
+            p1 = [1 0]; % coordinates of first data point
+            p2 = [0 1]; % coordinates of second data point
+            p3 = [-1 0]; % coordinates of third data point
+            
+            actSolution = smallestCircleRadius(p1, p2, p3);
+            expSolution = 1;
+            testCase.verifyEqual(actSolution, expSolution)
+        end
     end
 end
 
