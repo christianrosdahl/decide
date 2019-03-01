@@ -20,10 +20,8 @@ for i = 1:length(x)-2 % Iterate through data points
     p1 = [x(i) y(i)];
     p2 = [x(i+1) y(i+1)];
     p3 = [x(i+2) y(i+2)];
-    vec1 = p2 - p1;
-    vec2 = p3 - p2;
     
-    area = abs(det([vec1; vec2]))/2;
+    area = triangleArea(p1, p2, p3);
     
     if area > area1
         fulfilled = 1;

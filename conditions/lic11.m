@@ -35,10 +35,8 @@ for i = 1:length(x)-2-e_pts-f_pts % Iterate through data points
     p1 = [x(i) y(i)];
     p2 = [x(i+e_pts+1) y(i+e_pts+1)];
     p3 = [x(i+e_pts+f_pts+2) y(i+e_pts+f_pts+2)];
-    vec1 = p2 - p1;
-    vec2 = p3 - p2;
-    
-    area = abs(det([vec1; vec2]))/2;
+
+    area = triangleArea(p1, p2, p3);
     
     if area > area1
         fulfilled = 1;
