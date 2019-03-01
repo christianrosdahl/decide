@@ -14,6 +14,8 @@ function [launch, cmv, pum, fuv] = decide(points, parameters, lcm, puv)
 %   * lmc = logical connector matrix: 0 = notused, 1 = or, 2 = and
 %   * puv = preliminary unlocking vector
 
+nbr_lics = 15; % Number of LICs
+
 % Parameters:
 length1 = parameters{1}; % Length in LICs 1, 8, 13
 radius1 = parameters{2}; % Radius in LICs 2, 9, 14
@@ -40,7 +42,7 @@ y = points(:,2); % y-coordinates of data points
 
 % Compute Conditions Met Vector (cmv):
 addpath('conditions')
-cmv = zeros(15,1);
+cmv = zeros(nbr_lics,1);
 cmv(1) = lic1(x, y, length1);
 cmv(2) = lic2(x, y, radius1);
 cmv(3) = lic3(x, y, epsilon);
@@ -58,10 +60,10 @@ cmv(14) = lic14(x, y, a_pts, b_pts, radius1, radius2);
 cmv(15) = lic15(x, y, e_pts, f_pts, area1, area2);
 
 % Compute Preliminary Unlocking Matrix (pum):
-pum = zeros(15,15);
+pum = zeros(nbr_lics,nbr_lics);
 % In lcm: 0 = not used, 1 = or, 2 = and
-for i = 1:15
-    for j = 1:15
+for i = 1:nbr_lics
+    for j = 1:nbr_lics
         if lcm(i,j) == 2 % The logical connector is 'and'
             if cmv(i) == 1 && cmv(j) == 1
                 pum(i,j) = 1;
@@ -77,18 +79,18 @@ for i = 1:15
 end
 
 % Compute Final Unlocking Vector (fuv): 
-fuv = zeros(15,1);
-for i = 1:15
+fuv = zeros(nbr_lics,1);
+for i = 1:nbr_lics
     if puv(i) == 0 % The LIC should not be considered.
         fuv(i) = 1;
     end
-    if sum(pum(i,:)) == 15 % All entries of row i in pum are true.
+    if sum(pum(i,:)) == nbr_lics % All entries of row i in pum are true.
         fuv(i) = 1;
     end
 end
 
 % Final launch/no launch decision:
-if sum(fuv) == 15 % If all entries in fuv are true
+if sum(fuv) == nbr_lics % If all entries in fuv are true
     launch = 'YES';
 else
     launch = 'NO';
