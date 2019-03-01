@@ -26,32 +26,13 @@ end
 
 largestDist = 0;
 for i = 1:length(x)-n_pts+1 % Iterate through data points
-    p1 = [x(i) y(i) 0]; % First point on line (described in 3D).
-    p2 = [x(i+n_pts-1) y(i+n_pts-1) 0]; % Second point on line (in 3D).
-    lineVec = (p2 - p1); % Vector defining the line.
+    p1 = [x(i) y(i)]; % First point on line.
+    p2 = [x(i+n_pts-1) y(i+n_pts-1)]; % Second point on line.
     
-    if norm(lineVec) > 0
-        lineVec = lineVec/norm(lineVec); % Normalise line vector.
-        for j = i+1:i+n_pts-2
-            point = [x(j) y(j) 0]; % Point vector (in 3D).
-            v = point - p1;
-            
-            % The cross product between v and lineVec gives a vector whose
-            % length is equal to the area of the parallelogram defined by 
-            % these vectors. This area is also the base of 
-            % the parallelogram -- given by the unit vector v --
-            % times the height, which is the sought distance to the point.
-            % Thus, the cross product yields the distance from the line to
-            % the point when v is a unit vector.
-            dist = norm(cross(v,lineVec)); % Distance between line and point.
-            largestDist = max(largestDist, dist);
-        end
-    else % If p1 and p2 coincide
-        for j = i+1:i+n_pts-2
-            point = [x(j) y(j)];
-            dist = norm(p1(1:2) - point);
-            largestDist = max(largestDist, dist);
-        end
+    for j = i+1:i+n_pts-2 % Iterate through intermediate data points
+        point = [x(j) y(j)]; % Point vector.
+        dist = pointLineDist(point, p1, p2);
+        largestDist = max(largestDist, dist);
     end
 end
 
