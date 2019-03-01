@@ -26,7 +26,7 @@ for i = 1:length(x)-q_pts+1 % Iterate through data points
     yy = y(i:i+q_pts-1);
     quadrants = zeros(1,q_pts);
     for j = 1:q_pts
-        quadrants(j) = quadrant(xx(j),yy(j));
+        quadrants(j) = getQuadrant(xx(j),yy(j));
     end
     nbr_quads = length(unique(quadrants));
     if nbr_quads > quads

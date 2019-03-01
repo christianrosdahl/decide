@@ -1,4 +1,4 @@
-function q = quadrant(x,y)
+function q = getQuadrant(x,y)
 % QUADRANT Returns number q of the quadrant in which the point (x,y) is.
 if x >= 0 && y >= 0
     q = 1;

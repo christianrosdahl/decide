@@ -609,15 +609,15 @@ classdef TestingClass < matlab.unittest.TestCase
             testCase.verifyEqual(actSolution, expSolution)
         end
         
-        function testQuadrant(testCase)
-            % TESTQUADRANT Checks that the correct quadrant for a point
+        function testGetQuadrant(testCase)
+            % TESTGETQUADRANT Checks that the correct quadrant for a point
             % (x,y) is returned.
             
             % (-3,-2) is in the third quadrant.
             x = -3; % x-coordinate of data point
             y = -2; % y-coordinate of data point
             
-            actSolution = quadrant(x,y);
+            actSolution = getQuadrant(x,y);
             expSolution = 3;
             testCase.verifyEqual(actSolution, expSolution)
         end
